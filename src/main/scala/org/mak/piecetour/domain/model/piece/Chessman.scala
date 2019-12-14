@@ -5,7 +5,9 @@ import org.mak.piecetour.domain.model.board.TilePosition
 
 import scala.collection.immutable.HashMap
 
-case class Chessman(var currentPosition: TilePosition, private val listOfMovementRules: List[MovementRule], private val heuristicAlgorithm: HeuristicAlgorithm) extends Piece{
+case class Chessman(var currentPosition: TilePosition,
+                    private val listOfMovementRules: List[MovementRule],
+                    private val tourAlgorithm: HeuristicAlgorithm) extends Piece{
 
   protected var positionsVisited: Map[Int, TilePosition] = HashMap[Int, TilePosition]()
 
@@ -18,6 +20,6 @@ case class Chessman(var currentPosition: TilePosition, private val listOfMovemen
   override def setCurrentPoisition(position: TilePosition): Unit = ???
 
   override def startTour(): Unit = {
-
+    tourAlgorithm.findTourPath(this)
   }
 }

@@ -25,5 +25,9 @@ object Main extends App {
   val randomColumnIndex = scala.util.Random.nextInt(chessBoard.columnSize)
   val startPosition = new TilePosition(randomRowIndex, randomColumnIndex)
   val heuristicAlgorithm = new HeuristicAlgorithm(chessBoard)
-  val chessman = Chessman(startPosition, MovementRule.buildMovementRules(listOfLegalMoves), heuristicAlgorithm)
+  val chessman = Chessman(startPosition, MovementRule.buildRules(listOfLegalMoves), heuristicAlgorithm)
+  chessman.startTour()
+  println(chessman.toString)
+  println("Furnishing Chess Board after movement: ")
+  println(chessBoard.getPrintable())
 }
