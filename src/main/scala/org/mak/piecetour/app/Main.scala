@@ -8,7 +8,7 @@ import scala.collection.immutable.HashMap
 
 object Main extends App {
 
-  val chessBoard = ChessBoard(900)
+  val chessBoard = ChessBoard(gridSize = 900)
   println("<DEBUG>Furnishing Chess Board before tour: ")
   println(chessBoard.getPrintable(true))
   println(chessBoard.getPrintable())
