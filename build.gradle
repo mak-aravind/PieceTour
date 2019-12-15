@@ -7,16 +7,14 @@
  */
 
 plugins {
-    // Apply the scala plugin to add support for Scala
     id 'scala'
     id 'idea'
     id 'eclipse'
     id 'groovy'
+    id 'application'
 }
 
 repositories {
-    // Use jcenter for resolving dependencies.
-    // You can declare any Maven/Ivy/file repository here.
     jcenter()
 }
 
@@ -32,8 +30,10 @@ dependencies {
     testRuntimeOnly 'org.scala-lang.modules:scala-xml_2.12:1.2.0'
 
 }
+mainClassName = "org.mak.piecetour.lab.Main"
 
-/*compileScala {
-    classpath = classpath.plus(files(compileGroovy.destinationDir))
-    dependsOn compileGroovy
-}*/
+jar {
+    manifest {
+        attributes 'Main-Class': 'org.mak.piecetour.lab.Main'
+    }
+}

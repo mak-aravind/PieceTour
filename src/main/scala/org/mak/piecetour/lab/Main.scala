@@ -2,11 +2,14 @@ package org.mak.piecetour.lab
 
 import org.mak.piecetour.algo.HeuristicAlgorithm
 import org.mak.piecetour.domain.model.board.{ChessBoard, TilePosition}
-import org.mak.piecetour.domain.model.piece.{Chessman, MovementRule}
+import org.mak.piecetour.domain.model.piece.{MovementRule, Piece}
+
+import scala.collection.immutable.HashMap
 
 object Main extends App {
-  val chessBoard = ChessBoard()
-  println("Furnishing Chess Board: ")
+
+  val chessBoard = ChessBoard(900)
+  println("<DEBUG>Furnishing Chess Board before tour: ")
   println(chessBoard.getPrintable(true))
   println(chessBoard.getPrintable())
   println("The size of the chessboard grid")
@@ -23,11 +26,21 @@ object Main extends App {
 
   val randomRowIndex = scala.util.Random.nextInt(chessBoard.rowSize)
   val randomColumnIndex = scala.util.Random.nextInt(chessBoard.columnSize)
-  val startPosition = new TilePosition(randomRowIndex, randomColumnIndex)
+  val startPosition = TilePosition(randomRowIndex, randomColumnIndex)
   val heuristicAlgorithm = new HeuristicAlgorithm(chessBoard)
-  val chessman = Chessman(startPosition, MovementRule.buildRules(listOfLegalMoves), heuristicAlgorithm)
-  chessman.startTour()
+  val positionsVisited: Map[Int, (Int,Int)]  = HashMap[Int, (Int, Int)]()
+  val chessman = Piece(currentPosition = startPosition,
+                          nextPosition = startPosition,
+                          MovementRule.buildRules(listOfLegalMoves),
+                          positionsVisited,
+                          heuristicAlgorithm
+                          )
   println(chessman.toString)
-  println("Furnishing Chess Board after movement: ")
+  chessman.startTour()
+  println("<DEBUG>Furnishing Chess Board after tour: ")
+  println(chessBoard.getPrintable(true))
+  println("<RESULT>Furnishing Chess Board after tour: ")
   println(chessBoard.getPrintable())
+  println("Number of Positions visited " + chessman.positionsVisited.size)
+  println("started with Row:" + randomRowIndex + "~~Column: " + randomColumnIndex)
 }

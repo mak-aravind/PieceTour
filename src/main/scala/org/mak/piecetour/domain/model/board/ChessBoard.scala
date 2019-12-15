@@ -12,28 +12,38 @@ class ChessBoard private (private val dimension: Dimension){
                                                 for (columnIndex <- 0 until columnSize) yield
                                                   TilePosition(rowIndex,columnIndex)).toArray
 
+  def move(piece: Piece): Unit = {
+    val nextRowIndexToOccupy = piece.nextPosition.rowIndex
+    val nextColumnIndexToOccupy = piece.nextPosition.columnIndex
+    grid = occupy(nextRowIndexToOccupy, nextColumnIndexToOccupy,piece.currentPosition.visited)
+    val visitedPosition = grid(nextRowIndexToOccupy)(nextColumnIndexToOccupy)
+    piece.currentPosition = visitedPosition
+    piece.updateVisitedPositions(visitedPosition)
+  }
 
+  private def occupy(nextRowIndexToVisit: Int, nextColumnIndexToVisit: Int, numberOfCellsVisited:Int) = {
+    grid.map(row =>
+      row.map(tilePosition =>
+        if (tilePosition.rowIndex == nextRowIndexToVisit &&
+          tilePosition.columnIndex == nextColumnIndexToVisit && tilePosition.visited == 0) {
+          tilePosition.copy(visited = numberOfCellsVisited + 1)
+        }
+        else tilePosition
+      )
+    )
+  }
+
+  def isNextPositionWithinLimits(position: TilePosition): Boolean = {
+    val bounded = (position.rowIndex >= 0 &&
+      position.rowIndex <= rowSize - 1) &&
+      (position.columnIndex >= 0 &&
+        position.columnIndex <= columnSize - 1)
+    bounded
+  }
 
   def getPrintable(debug: Boolean = false): String = {
     val convertedTourGrid = grid.map(row => row.map(tilePosition => if (debug) tilePosition.toString else tilePosition.visited.toString))
     Tabulator.format(convertedTourGrid, isHeaderNeeded = false)
-  }
-
-  def move(chessman: Piece) = {
-    val rowIndexToVisit = chessman.getCurrentPosition.rowIndex
-    val columnIndexToVisit = chessman.getCurrentPosition.columnIndex
-    grid = markVisited(rowIndexToVisit, columnIndexToVisit)
-  }
-
-  private def markVisited(rowIndexToHost: Int, columnIndexToHost: Int) = {
-    grid.map(row =>
-      row.map(tilePosition =>
-        if (tilePosition.rowIndex == rowIndexToHost &&
-          tilePosition.columnIndex == columnIndexToHost)
-          tilePosition.copy(visited = 1)
-        else tilePosition
-      )
-    )
   }
 }
 
