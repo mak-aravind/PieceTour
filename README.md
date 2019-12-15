@@ -1,3 +1,3 @@
 # TrueCaller
 
-Will elobrate the algorithm for the solution
+Instructions to run the application gradle clean build run
