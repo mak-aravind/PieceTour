@@ -8,7 +8,10 @@ import scala.collection.immutable.HashMap
 
 object Main extends App {
 
-  val chessBoard = ChessBoard(gridSize = 900)
+  println("Type grid size : ")
+  val userGridSize = scala.io.StdIn.readLine()
+
+  val chessBoard = ChessBoard(gridSize = userGridSize.toInt)
   println("<DEBUG>Furnishing Chess Board before tour: ")
   println(chessBoard.getPrintable(true))
   println(chessBoard.getPrintable())
@@ -28,7 +31,7 @@ object Main extends App {
   val randomColumnIndex = scala.util.Random.nextInt(chessBoard.columnSize)
   val startPosition = TilePosition(randomRowIndex, randomColumnIndex)
   val heuristicAlgorithm = new HeuristicAlgorithm(chessBoard)
-  val positionsVisited: Map[Int, (Int,Int)]  = HashMap[Int, (Int, Int)]()
+  val positionsVisited: HashMap[Int, (Int, Int)] = HashMap[Int, (Int, Int)]()
   val chessman = Piece(currentPosition = startPosition,
                           nextPosition = startPosition,
                           MovementRule.buildRules(listOfLegalMoves),

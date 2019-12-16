@@ -10,26 +10,40 @@ plugins {
     id 'scala'
     id 'idea'
     id 'eclipse'
-    id 'groovy'
     id 'application'
 }
+
+version = '1.0'
 
 repositories {
     jcenter()
 }
 
+ext{
+    scalaMajorVersion = '2.12'
+    scalaMinorVersion = '8'
+    scalaVersion = "${scalaMajorVersion}.${scalaMinorVersion}"
+}
+
 dependencies {
     implementation 'org.scala-lang:scala-library:2.12.8'
+    implementation  "org.scala-lang:scala-reflect:${scalaVersion}"
 
-    testImplementation "org.codehaus.groovy:groovy-all:2.5.7"
-    testImplementation "org.spockframework:spock-core:1.3-groovy-2.5"
-    testImplementation 'com.wiredforcode:groovy-scala-extension-module:0.3'
-
-    testRuntime "cglib:cglib-nodep:3.1"
-    testRuntime "org.objenesis:objenesis:2.1"
-    testRuntimeOnly 'org.scala-lang.modules:scala-xml_2.12:1.2.0'
-
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.assertj:assertj-core:3.6.1'
+    testImplementation 'org.mockito:mockito-core:1.10.19'
+    testImplementation "org.scalatest:scalatest_${scalaMajorVersion}:3.0.7"
+    testImplementation "org.scalamock:scalamock_${scalaMajorVersion}:4.1.0"
+    testRuntimeOnly "org.scala-lang.modules:scala-xml_2.12:1.2.0"
 }
+
+task scalaTest(dependsOn: ['testClasses'], type: JavaExec) {
+    main = 'org.scalatest.tools.Runner'
+    args = ['-R', 'build/classes/test', '-o']
+    classpath = sourceSets.test.runtimeClasspath
+}
+
+test.dependsOn scalaTest
 
 mainClassName = "org.mak.piecetour.app.Main"
 
