@@ -8,7 +8,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+All dependencies are mentioned in build.gradle
 
 ```
 Give examples
@@ -17,8 +17,6 @@ Give examples
 ### Installing
 
 To build the project
-
-Say what the step will be
 
 ```
 gradle clean build
