@@ -6,10 +6,6 @@ import org.mak.piecetour.exception.PositionOutOfBoardException
 
 import scala.annotation.tailrec
 
-trait TourAlgorithm {
-    def findTourPath(piece: Piece)
-}
-
 class HeuristicAlgorithm(val chessBoard: ChessBoard) extends TourAlgorithm {
 
   override def findTourPath(piece: Piece): Unit = {
@@ -42,11 +38,7 @@ class HeuristicAlgorithm(val chessBoard: ChessBoard) extends TourAlgorithm {
   }
 
   def findNextPositionByRank(unMarkedTiles: List[TilePosition], piece: Piece): TilePosition = {
-    unMarkedTiles.foreach(tilePosition => tilePosition.rank = {
-      val unMarkedTiles = findPossibleUnmarkedTiles(piece.copy(tilePosition))
-      if (unMarkedTiles.isEmpty) 0 else unMarkedTiles.size
-    })
-    unMarkedTiles.sortWith(_.rank < _.rank).head
+    unMarkedTiles.map(tilePosition => tilePosition.copy(rank = findPossibleUnmarkedTiles(piece.copy(tilePosition)).size)).sortWith(_.rank < _.rank).head
   }
 
   def canMove(piece: Piece, movementRule: MovementRule): Boolean = {
