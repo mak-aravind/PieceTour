@@ -6,7 +6,7 @@
  * User Manual available at https://docs.gradle.org/5.5/userguide/scala_plugin.html
  */
 
-buildscript {
+/*buildscript {
     repositories {
         maven {
             url "https://plugins.gradle.org/m2/"
@@ -15,13 +15,14 @@ buildscript {
     dependencies {
         classpath 'com.github.jengelman.gradle.plugins:shadow:5.2.0'
     }
-}
+}*/
 
 plugins {
     id 'scala'
     id 'idea'
     id 'eclipse'
     id 'application'
+    id "com.github.johnrengelman.shadow" version "5.2.0"
 }
 
 apply plugin: 'java'
