@@ -12,7 +12,12 @@ object Main extends App {
   val userGridSizeInt : Int = if (userGridSize != null)  userGridSize.toInt else 100
   println("Run in Debug Mode (Y or N): ")
   val debugMode = scala.io.StdIn.readLine()
-  val userDebugMode = if (debugMode != null && debugMode.equalsIgnoreCase("yes") || debugMode.equals("y")) true else false
+  val userDebugMode : Boolean = if (debugMode != null) {
+    if (debugMode.equalsIgnoreCase("yes") || debugMode.equals("y"))
+      true
+    else
+      false
+  }else false
   val chessBoard = ChessBoard(gridSize = userGridSizeInt)
   val listOfLegalMoves = ("N", -3, 0) ::
     ("NW", -2,-2 ) ::
@@ -33,22 +38,22 @@ object Main extends App {
     positionsVisited,
     heuristicAlgorithm
   )
-
   private def printDebugDetails(): Unit = {
     println("<DEBUG>Furnishing Chess Board before tour: ")
     println(chessBoard.getPrintable(true))
     println("<DEBUG>Furnishing details of piece about to navigate: ")
     println(chessman.toString)
   }
+
   if (userDebugMode) printDebugDetails()
   println("Furnishing Chess Board before tour: ")
   println(chessBoard.getPrintable())
   println("The size of the chessboard grid")
   println("ROW SIZE:" + chessBoard.rowSize + " " + "COLUMN SIZE:" + chessBoard.columnSize)
+
   chessman.startTour()
-  if (userDebugMode) {
-    printDebugDetails()
-  }
+
+  if (userDebugMode) printDebugDetails()
   println("<RESULT>Furnishing Chess Board after tour: ")
   println(chessBoard.getPrintable())
   println("Number of Positions visited " + chessman.positionsVisited.size)
