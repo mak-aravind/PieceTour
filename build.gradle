@@ -6,17 +6,6 @@
  * User Manual available at https://docs.gradle.org/5.5/userguide/scala_plugin.html
  */
 
-/*buildscript {
-    repositories {
-        maven {
-            url "https://plugins.gradle.org/m2/"
-        }
-    }
-    dependencies {
-        classpath 'com.github.jengelman.gradle.plugins:shadow:5.2.0'
-    }
-}*/
-
 plugins {
     id 'scala'
     id 'idea'
@@ -24,9 +13,6 @@ plugins {
     id 'application'
     id "com.github.johnrengelman.shadow" version "5.2.0"
 }
-
-apply plugin: 'java'
-apply plugin: 'com.github.johnrengelman.shadow'
 
 version = '1.0'
 
@@ -51,7 +37,6 @@ ext{
 }
 
 dependencies {
-
     implementation 'org.scala-lang:scala-library:2.12.8'
     implementation  "org.scala-lang:scala-reflect:${scalaVersion}"
 

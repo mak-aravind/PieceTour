@@ -8,16 +8,12 @@ import scala.collection.immutable.HashMap
 
 object Main extends App {
   println("Type grid size (Ex: 100 will be of 10 * 10): ")
-  val userGridSize = scala.io.StdIn.readLine()
-  val userGridSizeInt : Int = if (userGridSize != null)  userGridSize.toInt else 100
+  val gridSize = scala.io.StdIn.readLine()
+  val userGridSizeInt : Int = if (null != gridSize && !gridSize.isEmpty)  gridSize.toInt else 100
   println("Run in Debug Mode (Y or N): ")
   val debugMode = scala.io.StdIn.readLine()
-  val userDebugMode : Boolean = if (debugMode != null) {
-    if (debugMode.equalsIgnoreCase("yes") || debugMode.equals("y"))
-      true
-    else
-      false
-  }else false
+  val userDebugMode : Boolean = if (null != debugMode) if (debugMode.equalsIgnoreCase("yes") || debugMode.equalsIgnoreCase("y")) true else false
+                                else false
   val chessBoard = ChessBoard(gridSize = userGridSizeInt)
   val listOfLegalMoves = ("N", -3, 0) ::
     ("NW", -2,-2 ) ::
