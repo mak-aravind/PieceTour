@@ -21,7 +21,7 @@ The problem is solved using H C Warnsdorff's technique which does the following:
 2. To decide the next tile in path, look at all possible unmarked tiles based on moving rules.
 3. Rank each possibility by the number of next moves from that tile.
 4. Move to any tile with the lowest rank.
-5. Add chosen tile to knight's tour path (i.e marked) and repeat the process from last chosen tile.
+5. Add chosen tile to piece's tour path (i.e marked) and repeat the process from last chosen tile.
 
 
 ## Getting Started
