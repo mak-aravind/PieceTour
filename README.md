@@ -100,7 +100,7 @@ To run the tests
 gradle test
 ```
 
-The test report will be available in <project-home>/build/reports/tests/test/index.html
+The test report will be available in */build/reports/tests/test/index.html*
 
 ## Development
 
