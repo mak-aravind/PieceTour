@@ -1,6 +1,6 @@
 # Piece Tour
 
-##Problem Statement:
+###Problem Statement:
 
 The assignment is to write a program that finds at least one
 tour for a chess piece on a 10-by-10 chessboard. A tour is
