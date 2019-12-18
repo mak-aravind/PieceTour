@@ -1,6 +1,27 @@
-# Project Title
+# Piece Tour
 
-One Paragraph of project description goes here
+Problem Statement:
+
+The assignment is to write a program that finds at least one
+tour for a chess piece on a 10-by-10 chessboard. A tour is
+a path for a piece to visit all tiles on the board, following a
+set of rules for movement. Assume the piece can start in
+any tile.
+The four rules of movement for the piece are:
+a) The piece can move 3 spaces either North, East, South,
+or West.
+b) The piece can move 2 spaces diagonally: Northeast,
+Southeast, Southwest, or Northwest.
+c) Each space can only be visited once.
+
+Solution using Warnsdorff's Algorithm The problem is solved using H C Warnsdorff's technique which does the following:
+
+1. Start from any tile and mark it as visited.
+2. To decide the next tile in path, look at all possible unmarked tiles based on moving rules.
+3. Rank each possibility by the number of next moves from that tile.
+4. Move to any tile with the lowest rank.
+5. Add chosen tile to knight's tour path (i.e marked) and repeat the process from last chosen tile.
+
 
 ## Getting Started
 
