@@ -113,13 +113,13 @@ gradle idea
 
 ## Deployment
 
-Execute below command to get an executable jar file under project /build/libs folder
+Execute below command to get an executable jar file under project */build/libs* folder
 
 ```
 gradle shadowJar
 ```
 
-Execute below command to execute java file
+Execute below command to execute as java application without scala dependencies from */build/libs* location 
 
 ```
 java -jar TrueCaller-1.0-all.jar
