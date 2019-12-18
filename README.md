@@ -51,7 +51,7 @@ gradle run
 ```
 Sample Output
 ```
-mak@pop-os:~/MEGAsync/mak/project/PieceTour/TrueCaller$ gradle run
+mak@pop-os:~/MEGAsync/mak/project/PieceTour$ gradle run
 
 > Task :run
 Type grid size (Ex: 100 will be of 10 * 10): 
@@ -127,7 +127,7 @@ java -jar TrueCaller-1.0-all.jar
 Sample output
 
 ```
-mak@pop-os:~/MEGAsync/mak/project/PieceTour/TrueCaller/build/libs$ java -jar TrueCaller-1.0-all.jar 
+mak@pop-os:~/MEGAsync/mak/project/PieceTour/build/libs$ java -jar TrueCaller-1.0-all.jar 
 Type grid size (Ex: 100 will be of 10 * 10): 
 100
 Run in Debug Mode (Y or N): 
