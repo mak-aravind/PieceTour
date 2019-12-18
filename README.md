@@ -14,7 +14,8 @@ b) The piece can move 2 spaces diagonally: Northeast,
 Southeast, Southwest, or Northwest.
 c) Each space can only be visited once.
 
-Solution using Warnsdorff's Algorithm The problem is solved using H C Warnsdorff's technique which does the following:
+#### Solution using Warnsdorff's Algorithm: 
+The problem is solved using H C Warnsdorff's technique which does the following:
 
 1. Start from any tile and mark it as visited.
 2. To decide the next tile in path, look at all possible unmarked tiles based on moving rules.
